@@ -99,7 +99,8 @@ class _FooState extends State<Foo> {
 
   void _checkDeepLink(String link) {
     if (link != null) {
-      var code = link.substring(link.indexOf(RegExp("code=")) + 20);
+      debugPrint("link == $link");
+      var code = link.substring(link.indexOf(RegExp("code=")) + 5);
       loginWithGitHub(code).then((github) {
         print("LOGGED IN AS: " + github.accessToken);
       }).catchError((e) {
@@ -112,6 +113,8 @@ class _FooState extends State<Foo> {
     const String url = "https://github.com/login/oauth/authorize"
         "?client_id=$clientId"
         "&scope=public_repo%20read:user%20user:email";
+
+    debugPrint("login url == $url");
 
     if (await canLaunch(url)) {
       await launch(
