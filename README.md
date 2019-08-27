@@ -1,5 +1,7 @@
 ## Uni Links
 
+[![Actions](https://github.com/wk-j/uni-links/workflows/flutter/badge.svg)](https://github.com/wk-j/uni-links/actions)
+
 ```bash
 flutter create --project-name uuu -t app --org wk .
 ```
