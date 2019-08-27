@@ -33,8 +33,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https" 
-                    android:host="edoc.ku.ac.th" 
-                    android:pathPrefix="/sigin" />
+                    android:pathPrefix="/auth" 
+                    android:host="localhost" />
             </intent-filter>
             <!-- end wk-j -->
 

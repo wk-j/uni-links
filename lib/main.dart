@@ -1,38 +1,12 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:uni_links/uni_links.dart' as UniLink;
-import 'package:flutter/services.dart' show PlatformException;
-
-import 'p2.dart';
+import 'package:uuu/signin.dart';
 
 main() {
-  checkDeepLink();
   runApp(MyApp());
 }
 
-Future checkDeepLink() async {
-  StreamSubscription _sub;
-  try {
-    print("checkDeepLink");
-    await UniLink.getInitialLink();
-    _sub = UniLink.getUriLinksStream().listen((Uri uri) {
-      print(uri);
-      runApp(MyApp(uri: uri));
-    }, onError: (err) {
-      // Handle exception by warning the user their action did not succeed
-
-      print("onError");
-    });
-  } on PlatformException {
-    print("PlatformException");
-  }
-}
-
 class MyApp extends StatelessWidget {
-  final Uri uri;
-
-  MyApp({this.uri});
+  MyApp();
 
   @override
   Widget build(BuildContext context) {
@@ -41,39 +15,21 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(uri: uri),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key key, this.uri}) : super(key: key);
-  final Uri uri;
+  MyHomePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      if (uri != null) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SecondPage(uri)));
-      }
-    });
-
     return Scaffold(
       appBar: AppBar(
-        title: Text("Uni Links"),
+        title: Text("Login"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "Deep link",
-              style: TextStyle(fontSize: 22),
-            ),
-          ],
-        ),
-      ),
+      body: Foo(),
     );
   }
 }
